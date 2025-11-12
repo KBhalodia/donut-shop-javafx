@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="main.controllers.CoffeeController">
+    <VBox spacing="12.0" alignment="CENTER" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
+
+        <Label text="Order Coffee" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+        <HBox spacing="8" alignment="CENTER">
+            <Label text="Cup Size:" />
+            <ComboBox fx:id="cupSizeCombo" prefWidth="150" />
+        </HBox>
+
+        <VBox spacing="4">
+            <Label text="Add-ins:" />
+            <HBox spacing="10" alignment="CENTER">
+                <CheckBox fx:id="whippedCreamCheck" text="Whipped Cream" />
+                <CheckBox fx:id="vanillaCheck" text="Vanilla" />
+                <CheckBox fx:id="milkCheck" text="2% Milk" />
+                <CheckBox fx:id="caramelCheck" text="Caramel" />
+                <CheckBox fx:id="mochaCheck" text="Mocha" />
+            </HBox>
+        </VBox>
+
+        <HBox spacing="8" alignment="CENTER">
+            <Label text="Quantity:" />
+            <Spinner fx:id="quantitySpinner" prefWidth="80" />
+        </HBox>
+
+        <Label fx:id="subtotalLabel" text="Subtotal: $0.00" style="-fx-font-size: 14px;" />
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button fx:id="addButton" text="Add to Order" onAction="#onAddCoffee" />
+            <Button fx:id="clearButton" text="Clear" onAction="#onClear" />
+        </HBox>
+
+    </VBox>
+</AnchorPane>
