@@ -24,6 +24,7 @@
         <HBox spacing="10" alignment="CENTER">
             <Button fx:id="cancelBtn" text="Cancel Selected Order" onAction="#onCancelOrder" />
             <Button fx:id="exportBtn" text="Export All Orders" onAction="#onExport" />
+            <Button text="Back to Main Menu" onAction="#onBackToMainMenu" />
         </HBox>
 
     </VBox>

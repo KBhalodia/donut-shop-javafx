@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import main.Main;
 import main.model.MenuItem;
+import main.model.Order;
 
 public class CurrentOrderController {
 
@@ -39,12 +40,12 @@ public class CurrentOrderController {
         if (Main.currentOrder.getItems().isEmpty()) {
             return;
         }
-        
+
         Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmAlert.setTitle("Clear Order");
         confirmAlert.setHeaderText("Clear all items?");
         confirmAlert.setContentText("Are you sure you want to remove all items from the current order?");
-        
+
         if (confirmAlert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
             Main.currentOrder.clear();
             refreshTotals();
@@ -53,10 +54,36 @@ public class CurrentOrderController {
 
     @FXML
     private void onPlaceOrder() {
-        // TODO: assign order number (from StoreOrders), push CURRENT into StoreOrders, start a new CURRENT
-        // show a confirmation dialog with order #
+        if (Main.currentOrder.getItems().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Empty Order");
+            alert.setHeaderText(null);
+            alert.setContentText("There are no items in the current order.");
+            alert.showAndWait();
+            return;
+        }
+
+        // Add current order to the store's list
+        Main.storeOrders.addOrder(Main.currentOrder);
+
+        int placedOrderNumber = Main.currentOrder.getOrderNumber();
+
+        // Start a brand new current order
+        Main.currentOrder = new main.model.Order();
+
+        // Refresh this screen
         refreshTotals();
+
+        // Tell the user it worked
+        Alert confirm = new Alert(Alert.AlertType.INFORMATION);
+        confirm.setTitle("Order Placed");
+        confirm.setHeaderText("Order #" + placedOrderNumber + " placed.");
+        confirm.setContentText("The order has been added to Store Orders.");
+        confirm.showAndWait();
     }
+
+
+
 
     /**
      * Refreshes the display with current order items and totals.
@@ -78,4 +105,20 @@ public class CurrentOrderController {
         taxLabel.setText(String.format("$%.2f", tax));
         totalLabel.setText(String.format("$%.2f", total));
     }
+    @FXML
+    private void onBackToMainMenu(javafx.event.ActionEvent event) {
+        try {
+            javafx.scene.Parent root = javafx.fxml.FXMLLoader.load(
+                    getClass().getResource("/main-view.fxml")
+            );
+            javafx.stage.Stage stage =
+                    (javafx.stage.Stage) ((javafx.scene.Node) event.getSource())
+                            .getScene().getWindow();
+            stage.getScene().setRoot(root);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

@@ -16,14 +16,18 @@ public class Main extends Application {
     public static StoreOrders storeOrders = new StoreOrders();
     public static Order currentOrder = new Order();
     public static main.controllers.CurrentOrderController currentOrderController;
+    public static main.controllers.AllOrdersController allOrdersController;
 
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/main-view.fxml"));
         Scene scene = new Scene(root);
-        stage.setTitle("RU Donuts");
+        scene.getStylesheets().add(getClass().getResource("/app.css").toExternalForm());
+        stage.setTitle("RU Cafe");
         stage.setScene(scene);
         stage.show();
+
+
     }
 
     public static void main(String[] args) {

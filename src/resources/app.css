@@ -1,0 +1,66 @@
+/* Overall background */
+.root {
+    -fx-background-color: linear-gradient(to bottom, #fff7eb, #ffe1c4);
+    -fx-font-family: "System";
+}
+
+/* Title labels */
+.ru-title {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #5b3b2a;
+}
+
+.ru-subtitle {
+    -fx-font-size: 18px;
+    -fx-text-fill: #8a5a3c;
+}
+
+/* Main menu buttons */
+.menu-button {
+    -fx-background-color: #ffe6cc;
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-color: #d29b6c;
+    -fx-border-width: 1.5;
+    -fx-padding: 10 20 10 20;
+    -fx-font-size: 14px;
+    -fx-text-fill: #5b3b2a;
+}
+
+.menu-button:hover {
+    -fx-background-color: #ffd1a3;
+}
+
+/* Use this style for “primary” action buttons inside screens (Add / Place Order etc.) */
+.primary-action {
+    -fx-background-color: #f4b183;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.primary-action:hover {
+    -fx-background-color: #e59453;
+}
+
+/* Smaller rounded buttons */
+.chip-button {
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+}
+
+/* List / text area look a bit more card-like */
+.list-view, .text-area {
+    -fx-background-color: #fffaf5;
+    -fx-border-color: #e0c3a2;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+/* Labels for totals, price etc. */
+.total-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #5b3b2a;
+}

@@ -2,108 +2,126 @@
 
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="main.controllers.MainController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="main.controllers.MainController"
+            style="-fx-background-color: linear-gradient(to bottom, #fffaf0, #fdebd3);">
 
-    <!-- HEADER -->
-    <top>
-        <HBox alignment="CENTER_LEFT" spacing="20"
-              style="-fx-background-color: #AAC8FF; -fx-padding: 20;">
-            <Label text="RU Donuts"
-                   style="-fx-font-size: 42px; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-family: 'Comic Sans MS', 'Chalkboard SE', 'Marker Felt', cursive;" />
-            <Pane HBox.hgrow="ALWAYS"/>
-            <ImageView fitHeight="70" fitWidth="70" preserveRatio="true">
-                <image>
-                    <Image url="@images/donut_icon.png"/>
-                </image>
-            </ImageView>
-        </HBox>
-    </top>
+    <VBox spacing="20"
+          alignment="TOP_CENTER"
+          AnchorPane.topAnchor="20"
+          AnchorPane.bottomAnchor="20"
+          AnchorPane.leftAnchor="20"
+          AnchorPane.rightAnchor="20">
 
-    <!-- HOME MENU SCREEN AND TABPANE -->
-    <center>
-        <StackPane>
-            <!-- HOME MENU SCREEN -->
-            <GridPane fx:id="homeScreen" hgap="20" vgap="20" style="-fx-padding: 20;">
-                <columnConstraints>
-                    <ColumnConstraints hgrow="ALWAYS" minWidth="200" percentWidth="50" />
-                    <ColumnConstraints hgrow="ALWAYS" minWidth="200" percentWidth="50" />
-                </columnConstraints>
-                <rowConstraints>
-                    <RowConstraints vgrow="ALWAYS" minHeight="200" percentHeight="50" />
-                    <RowConstraints vgrow="ALWAYS" minHeight="200" percentHeight="50" />
-                </rowConstraints>
-                
-                <!-- Quarter 1: Donuts - Row 0, Column 0 -->
-                <VBox fx:id="donutsBox" alignment="CENTER" spacing="10" style="-fx-cursor: hand; -fx-background-color: #F5F5F5;" maxWidth="Infinity" maxHeight="Infinity">
-                    <ImageView fitWidth="300" fitHeight="200" preserveRatio="true" pickOnBounds="true">
-                        <image><Image url="@images/donuts.jpg"/></image>
-                    </ImageView>
-                    <Label text="Donuts" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
-                </VBox>
-                <GridPane.rowIndex>0</GridPane.rowIndex>
-                <GridPane.columnIndex>0</GridPane.columnIndex>
+        <!-- Title -->
+        <Label text="RUcafe ☕"
+               style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #4e342e;" />
 
-                <!-- Quarter 2: Sandwiches - Row 0, Column 1 -->
-                <VBox fx:id="sandwichBox" alignment="CENTER" spacing="10" style="-fx-cursor: hand; -fx-background-color: #F5F5F5;" maxWidth="Infinity" maxHeight="Infinity">
-                    <ImageView fitWidth="300" fitHeight="200" preserveRatio="true" pickOnBounds="true">
-                        <image><Image url="@images/sandwich.jpg"/></image>
-                    </ImageView>
-                    <Label text="Sandwiches" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
-                </VBox>
-                <GridPane.rowIndex>0</GridPane.rowIndex>
-                <GridPane.columnIndex>1</GridPane.columnIndex>
+        <Label text="Main Menu"
+               style="-fx-font-size: 18px; -fx-text-fill: #6d4c41;" />
 
-                <!-- Quarter 3: Coffee - Row 1, Column 0 -->
-                <VBox fx:id="coffeeBox" alignment="CENTER" spacing="10" style="-fx-cursor: hand; -fx-background-color: #F5F5F5;" maxWidth="Infinity" maxHeight="Infinity">
-                    <ImageView fitWidth="300" fitHeight="200" preserveRatio="true" pickOnBounds="true">
-                        <image><Image url="@images/coffee.jpg"/></image>
-                    </ImageView>
-                    <Label text="Coffee" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
-                </VBox>
-                <GridPane.rowIndex>1</GridPane.rowIndex>
-                <GridPane.columnIndex>0</GridPane.columnIndex>
+        <!-- Buttons Grid -->
+        <GridPane hgap="20" vgap="20">
+            <columnConstraints>
+                <ColumnConstraints halignment="CENTER" />
+                <ColumnConstraints halignment="CENTER" />
+            </columnConstraints>
 
-                <!-- Quarter 4: Order Management Buttons (split horizontally) - Row 1, Column 1 -->
-                <VBox alignment="CENTER" spacing="15" maxWidth="Infinity" maxHeight="Infinity" style="-fx-background-color: #F5F5F5;">
-                    <!-- Orders Placed Button (top) -->
-                    <Button fx:id="ordersPlacedBtn" onAction="#showStoreOrdersTab"
-                            style="-fx-background-color: #000000; -fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold; -fx-padding: 20 40; -fx-pref-width: 300; -fx-pref-height: 100; -fx-cursor: hand; -fx-content-display: left;" />
-                    
-                    <!-- Current Order Button (bottom) -->
-                    <Button fx:id="currentOrderBtn" onAction="#showCurrentOrderTab" 
-                            style="-fx-background-color: #000000; -fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold; -fx-padding: 20 40; -fx-pref-width: 300; -fx-pref-height: 100; -fx-cursor: hand; -fx-content-display: left;" />
-                </VBox>
-                <GridPane.rowIndex>1</GridPane.rowIndex>
-                <GridPane.columnIndex>1</GridPane.columnIndex>
+            <rowConstraints>
+                <RowConstraints valignment="CENTER" />
+                <RowConstraints valignment="CENTER" />
+                <RowConstraints valignment="CENTER" />
+            </rowConstraints>
 
-            </GridPane>
+            <!-- Row 0 -->
+            <Button text="☕ Order Coffee"
+                    prefWidth="190" prefHeight="70"
+                    GridPane.rowIndex="0" GridPane.columnIndex="0"
+                    onAction="#onOpenCoffee"
+                    style="
+                        -fx-background-radius: 35;
+                        -fx-background-color: #f4a261;
+                        -fx-text-fill: white;
+                        -fx-font-size: 15px;
+                        -fx-font-weight: bold;
+                        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 6, 0, 0, 2);
+                    " />
 
-            <!-- TABPANE (hidden initially) -->
-            <TabPane fx:id="mainTabPane" tabClosingPolicy="UNAVAILABLE" visible="false" managed="false">
-                <Tab text="Order Coffee">
-                    <fx:include source="coffee-view.fxml"/>
-                </Tab>
+            <Button text="🍩 Order Donuts"
+                    prefWidth="190" prefHeight="70"
+                    GridPane.rowIndex="0" GridPane.columnIndex="1"
+                    onAction="#onOpenDonuts"
+                    style="
+                        -fx-background-radius: 35;
+                        -fx-background-color: #e76f51;
+                        -fx-text-fill: white;
+                        -fx-font-size: 15px;
+                        -fx-font-weight: bold;
+                        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 6, 0, 0, 2);
+                    " />
 
-                <Tab text="Order Donuts">
-                    <fx:include source="donut-view.fxml"/>
-                </Tab>
+            <!-- Row 1 -->
+            <Button text="🥪 Order Sandwich"
+                    prefWidth="190" prefHeight="70"
+                    GridPane.rowIndex="1" GridPane.columnIndex="0"
+                    onAction="#onOpenSandwich"
+                    style="
+                        -fx-background-radius: 35;
+                        -fx-background-color: #2a9d8f;
+                        -fx-text-fill: white;
+                        -fx-font-size: 15px;
+                        -fx-font-weight: bold;
+                        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 6, 0, 0, 2);
+                    " />
 
-                <Tab text="Order Sandwiches">
-                    <fx:include source="sandwich-view.fxml"/>
-                </Tab>
+            <Button text="🧾 Current Order"
+                    prefWidth="190" prefHeight="70"
+                    GridPane.rowIndex="1" GridPane.columnIndex="1"
+                    onAction="#onOpenCurrentOrder"
+                    style="
+                        -fx-background-radius: 35;
+                        -fx-background-color: #8d99ae;
+                        -fx-text-fill: white;
+                        -fx-font-size: 15px;
+                        -fx-font-weight: bold;
+                        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 6, 0, 0, 2);
+                    " />
 
-                <Tab text="Current Order">
-                    <fx:include source="current-order-view.fxml"/>
-                </Tab>
+            <!-- Row 2 -->
+            <Button text="📚 Store Orders"
+                    prefWidth="400" prefHeight="70"
+                    GridPane.rowIndex="2" GridPane.columnIndex="0"
+                    GridPane.columnSpan="2"
+                    onAction="#onOpenStoreOrders"
+                    style="
+                        -fx-background-radius: 35;
+                        -fx-background-color: #f2c94c;
+                        -fx-text-fill: #5d4037;
+                        -fx-font-size: 15px;
+                        -fx-font-weight: bold;
+                        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 6, 0, 0, 2);
+                    " />
+        </GridPane>
 
-                <Tab text="Store Orders">
-                    <fx:include source="all-orders-view.fxml"/>
-                </Tab>
-            </TabPane>
+        <!-- Content area where other views load -->
+        <StackPane fx:id="contentArea"
+                   prefHeight="400" prefWidth="600"
+                   style="
+                       -fx-background-color: #fffaf0;
+                       -fx-background-radius: 25;
+                       -fx-border-radius: 25;
+                       -fx-border-color: #d7ccc8;
+                       -fx-border-width: 2;
+                       -fx-padding: 20;
+                   ">
+
+            <Label text="Welcome to RUcafe ☕🍩
+Choose an option above to start an order!"
+                   wrapText="true"
+                   style="-fx-font-size: 16px; -fx-text-fill: #6d4c41; -fx-alignment: center;" />
         </StackPane>
-    </center>
 
-</BorderPane>
+    </VBox>
+</AnchorPane>

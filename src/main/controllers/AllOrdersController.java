@@ -5,8 +5,7 @@ import javafx.scene.control.*;
 import java.nio.file.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import main.model.StoreOrders;
-import main.Main; // to access the global storeOrders
+import main.Main;
 
 public class AllOrdersController {
 
@@ -18,15 +17,28 @@ public class AllOrdersController {
 
     @FXML
     private void initialize() {
+        // register this instance in Main so other controllers can ask it to refresh
+        Main.allOrdersController = this;
         reloadOrders();
     }
 
     @FXML
     private void onOrderSelected() {
-        // load details of the selected order
         int index = ordersList.getSelectionModel().getSelectedIndex();
         if (index >= 0) {
-            orderDetailArea.setText(Main.storeOrders.getOrders().get(index).toString());
+            var order = Main.storeOrders.getOrders().get(index);
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("Order #").append(order.getOrderNumber()).append("\n");
+            sb.append("Subtotal: $").append(String.format("%.2f", order.getSubtotal())).append("\n");
+            sb.append("Tax: $").append(String.format("%.2f", order.getTax())).append("\n");
+            sb.append("Total: $").append(String.format("%.2f", order.getTotal())).append("\n\n");
+            sb.append("Items:\n");
+            for (var item : order.getItems()) {
+                sb.append(" • ").append(item.toString()).append("\n");
+            }
+
+            orderDetailArea.setText(sb.toString());
         }
     }
 
@@ -52,11 +64,14 @@ public class AllOrdersController {
         }
     }
 
-    private void reloadOrders() {
+    // ⬅️ make this PUBLIC so other controllers can call it
+    public void reloadOrders() {
         ordersList.getItems().clear();
-        for (int i = 0; i < Main.storeOrders.getOrders().size(); i++) {
-            var order = Main.storeOrders.getOrders().get(i);
-            ordersList.getItems().add("Order #" + order.getOrderNumber());
+        for (var order : Main.storeOrders.getOrders()) {
+            ordersList.getItems().add(
+                    "Order #" + order.getOrderNumber() +
+                            " — Total $" + String.format("%.2f", order.getTotal())
+            );
         }
     }
 
@@ -67,4 +82,19 @@ public class AllOrdersController {
         alert.setContentText(msg);
         alert.showAndWait();
     }
+    @FXML
+    private void onBackToMainMenu(javafx.event.ActionEvent event) {
+        try {
+            javafx.scene.Parent root = javafx.fxml.FXMLLoader.load(
+                    getClass().getResource("/main-view.fxml")
+            );
+            javafx.stage.Stage stage =
+                    (javafx.stage.Stage) ((javafx.scene.Node) event.getSource())
+                            .getScene().getWindow();
+            stage.getScene().setRoot(root);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

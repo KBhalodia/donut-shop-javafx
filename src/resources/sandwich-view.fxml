@@ -46,6 +46,7 @@
         <HBox spacing="10" alignment="CENTER">
             <Button fx:id="addBtn" text="Add to Order" onAction="#onAddToOrder" />
             <Button text="Clear" onAction="#onSelectionChanged" />
+            <Button text="Back to Main Menu" onAction="#onBackToMainMenu" />
         </HBox>
 
     </VBox>

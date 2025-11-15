@@ -33,6 +33,7 @@
             <Button fx:id="clearBtn" text="Clear Order" onAction="#onClearAll" />
             <Button fx:id="placeOrderBtn" text="Place Order" onAction="#onPlaceOrder" 
                     style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+            <Button text="Back to Main Menu" onAction="#onBackToMainMenu" />
         </HBox>
 
     </VBox>

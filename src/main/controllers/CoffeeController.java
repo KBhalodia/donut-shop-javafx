@@ -6,6 +6,11 @@ import main.Main;
 import main.model.Coffee;
 import main.enums.AddIns;
 import main.enums.CupSize;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import java.io.IOException;
 
 /**
  * Controller for Coffee Ordering View.
@@ -106,4 +111,33 @@ public class CoffeeController {
         alert.setContentText(msg);
         alert.showAndWait();
     }
+
+    @FXML
+    private void onBackToMenu() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/main-menu.fxml"));
+            Stage stage = (Stage) cupSizeCombo.getScene().getWindow();
+            stage.setTitle("RU Donuts - Main Menu");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void onBackToMainMenu(javafx.event.ActionEvent event) {
+        try {
+            javafx.scene.Parent root = javafx.fxml.FXMLLoader.load(
+                    getClass().getResource("/main-view.fxml")
+            );
+            javafx.stage.Stage stage =
+                    (javafx.stage.Stage) ((javafx.scene.Node) event.getSource())
+                            .getScene().getWindow();
+            stage.getScene().setRoot(root);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
