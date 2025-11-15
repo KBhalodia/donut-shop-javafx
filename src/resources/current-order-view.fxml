@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="main.controllers.CurrentOrderController">
+    <VBox spacing="15.0" AnchorPane.topAnchor="15" AnchorPane.leftAnchor="15" AnchorPane.rightAnchor="15" AnchorPane.bottomAnchor="15">
+
+        <Label text="Current Order" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+        <VBox spacing="5">
+            <Label text="Items in Order:" />
+            <ListView fx:id="itemList" prefHeight="250" />
+        </VBox>
+
+        <VBox spacing="8" alignment="CENTER_RIGHT">
+            <HBox spacing="10">
+                <Label text="Subtotal:" style="-fx-font-size: 14px;" />
+                <Label fx:id="subtotalLabel" text="0.00" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Tax (6.625%):" style="-fx-font-size: 14px;" />
+                <Label fx:id="taxLabel" text="0.00$" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Total:" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                <Label fx:id="totalLabel" text="0.00$" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+            </HBox>
+        </VBox>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button fx:id="removeSelectedBtn" text="Remove Selected" onAction="#onRemoveSelected" />
+            <Button fx:id="clearBtn" text="Clear Order" onAction="#onClearAll" />
+            <Button fx:id="placeOrderBtn" text="Place Order" onAction="#onPlaceOrder" 
+                    style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+        </HBox>
+
+    </VBox>
+</AnchorPane>
+

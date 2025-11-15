@@ -53,6 +53,10 @@ public class CoffeeController {
         if (mochaCheck.isSelected()) coffee.addAddIn(AddIns.MOCHA);
 
         Main.currentOrder.addItem(coffee);
+        // Refresh the Current Order view if it's available
+        if (Main.currentOrderController != null) {
+            Main.currentOrderController.refreshTotals();
+        }
         showAlert("Coffee Added", "Coffee successfully added to current order!");
     }
 

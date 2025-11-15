@@ -15,10 +15,11 @@ public class Main extends Application {
 
     public static StoreOrders storeOrders = new StoreOrders();
     public static Order currentOrder = new Order();
+    public static main.controllers.CurrentOrderController currentOrderController;
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/main/resources/main-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/main-view.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("RU Donuts");
         stage.setScene(scene);

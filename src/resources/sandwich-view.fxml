@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="main.controllers.SandwichController">
+    <fx:define>
+        <ToggleGroup fx:id="proteinGroup" />
+        <ToggleGroup fx:id="breadGroup" />
+    </fx:define>
+    
+    <VBox spacing="12.0" alignment="CENTER" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
+
+        <Label text="Order Sandwich" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+        <VBox spacing="8">
+            <Label text="Protein:" style="-fx-font-weight: bold;" />
+            <RadioButton text="Beef" toggleGroup="$proteinGroup" selected="true" onAction="#onSelectionChanged" />
+            <RadioButton text="Chicken" toggleGroup="$proteinGroup" onAction="#onSelectionChanged" />
+            <RadioButton text="Salmon" toggleGroup="$proteinGroup" onAction="#onSelectionChanged" />
+        </VBox>
+
+        <VBox spacing="8">
+            <Label text="Bread:" style="-fx-font-weight: bold;" />
+            <RadioButton text="Bagel" toggleGroup="$breadGroup" selected="true" onAction="#onSelectionChanged" />
+            <RadioButton text="Wheat" toggleGroup="$breadGroup" onAction="#onSelectionChanged" />
+            <RadioButton text="Sourdough" toggleGroup="$breadGroup" onAction="#onSelectionChanged" />
+        </VBox>
+
+        <VBox spacing="4">
+            <Label text="Add-ons:" style="-fx-font-weight: bold;" />
+            <CheckBox fx:id="cheese" text="Cheese (+$1.00)" onAction="#onSelectionChanged" />
+            <CheckBox fx:id="lettuce" text="Lettuce (+$0.30)" onAction="#onSelectionChanged" />
+            <CheckBox fx:id="tomato" text="Tomato (+$0.30)" onAction="#onSelectionChanged" />
+            <CheckBox fx:id="onion" text="Onion (+$0.30)" onAction="#onSelectionChanged" />
+        </VBox>
+
+        <HBox spacing="8" alignment="CENTER">
+            <Label text="Quantity:" />
+            <Spinner fx:id="qtySpinner" prefWidth="80" />
+        </HBox>
+
+        <Label fx:id="priceLabel" text="Price: $0.00" style="-fx-font-size: 14px;" />
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button fx:id="addBtn" text="Add to Order" onAction="#onAddToOrder" />
+            <Button text="Clear" onAction="#onSelectionChanged" />
+        </HBox>
+
+    </VBox>
+</AnchorPane>
+

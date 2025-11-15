@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="main.controllers.AllOrdersController">
+    <VBox spacing="15.0" AnchorPane.topAnchor="15" AnchorPane.leftAnchor="15" AnchorPane.rightAnchor="15" AnchorPane.bottomAnchor="15">
+
+        <Label text="Store Orders" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+        <HBox spacing="15" VBox.vgrow="ALWAYS">
+            <VBox spacing="5" prefWidth="250">
+                <Label text="All Orders:" />
+                <ListView fx:id="ordersList" prefHeight="300" onMouseClicked="#onOrderSelected" />
+            </VBox>
+
+            <VBox spacing="5" HBox.hgrow="ALWAYS">
+                <Label text="Order Details:" />
+                <TextArea fx:id="orderDetailArea" prefHeight="300" editable="false" wrapText="true" />
+            </VBox>
+        </HBox>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button fx:id="cancelBtn" text="Cancel Selected Order" onAction="#onCancelOrder" />
+            <Button fx:id="exportBtn" text="Export All Orders" onAction="#onExport" />
+        </HBox>
+
+    </VBox>
+</AnchorPane>
+
