@@ -35,11 +35,19 @@ public class DonutController {
             "Glazed Holes", "Powdered Holes", "Cinnamon Holes"
     };
     private static final String[] SEASONAL_FLAVORS = {
-            "Spooky Donut", "Pumpkin Spice"
+            "Spooky Donuts", "Pumpkin Spice Donuts"
     };
 
     @FXML
     private void initialize() {
+        // Set window title
+        if (donutTypeCombo != null && donutTypeCombo.getScene() != null) {
+            Stage stage = (Stage) donutTypeCombo.getScene().getWindow();
+            if (stage != null) {
+                stage.setTitle("Ordering Donuts");
+            }
+        }
+        
         // Fill donut type combo
         donutTypeCombo.getItems().addAll("Yeast", "Cake", "Donut Holes", "Seasonal");
         donutTypeCombo.getSelectionModel().selectFirst();
@@ -150,22 +158,21 @@ public class DonutController {
         };
     }
 
-    /** Update image based on selected type (use your real file names if you have them) */
+    /** Update image based on selected type - using donuts.jpg for all types */
     private void updateImage() {
         DonutCategory type = getSelectedType();
         if (type == null) {
-            itemImage.setImage(null);
+            // Load default donuts image
+            try {
+                itemImage.setImage(new Image(getClass().getResourceAsStream("/images/donuts.jpg")));
+            } catch (Exception e) {
+                itemImage.setImage(null);
+            }
             return;
         }
-        // Placeholder paths – put your actual images in resources and use correct names
-        String path = switch (type) {
-            case YEAST -> "/images/yeast.png";
-            case CAKE -> "/images/cake.png";
-            case HOLE -> "/images/holes.png";
-            case SEASONAL -> "/images/seasonal.png";
-        };
+        // Use the donuts.jpg image for all donut types
         try {
-            itemImage.setImage(new Image(getClass().getResourceAsStream(path)));
+            itemImage.setImage(new Image(getClass().getResourceAsStream("/images/donuts.jpg")));
         } catch (Exception e) {
             // If image missing, just ignore
             itemImage.setImage(null);
@@ -215,7 +222,25 @@ public class DonutController {
             javafx.stage.Stage stage =
                     (javafx.stage.Stage) ((javafx.scene.Node) event.getSource())
                             .getScene().getWindow();
-            stage.getScene().setRoot(root);
+            
+            // Preserve window size
+            double width = stage.getWidth();
+            double height = stage.getHeight();
+            
+            javafx.scene.Scene scene = stage.getScene();
+            if (scene == null) {
+                scene = new javafx.scene.Scene(root, width, height);
+                scene.getStylesheets().add(getClass().getResource("/app.css").toExternalForm());
+                stage.setScene(scene);
+            } else {
+                scene.setRoot(root);
+                // Ensure minimum size is maintained
+                if (width < 800) width = 900;
+                if (height < 600) height = 700;
+                stage.setWidth(width);
+                stage.setHeight(height);
+            }
+            stage.setTitle("RU Cafe");
         } catch (Exception e) {
             e.printStackTrace();
         }

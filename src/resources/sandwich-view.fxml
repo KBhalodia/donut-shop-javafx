@@ -2,9 +2,11 @@
 
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="main.controllers.SandwichController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="main.controllers.SandwichController"
+            style="-fx-background-color: linear-gradient(to bottom, #fffaf0, #fdebd3);">
     <fx:define>
         <ToggleGroup fx:id="proteinGroup" />
         <ToggleGroup fx:id="breadGroup" />
@@ -13,6 +15,13 @@
     <VBox spacing="12.0" alignment="CENTER" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
 
         <Label text="Order Sandwich" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+        <!-- Sandwich Image -->
+        <ImageView fitHeight="200" fitWidth="200" preserveRatio="true">
+            <image>
+                <Image url="@images/sandwich.jpg"/>
+            </image>
+        </ImageView>
 
         <VBox spacing="8">
             <Label text="Protein:" style="-fx-font-weight: bold;" />
@@ -24,7 +33,7 @@
         <VBox spacing="8">
             <Label text="Bread:" style="-fx-font-weight: bold;" />
             <RadioButton text="Bagel" toggleGroup="$breadGroup" selected="true" onAction="#onSelectionChanged" />
-            <RadioButton text="Wheat" toggleGroup="$breadGroup" onAction="#onSelectionChanged" />
+            <RadioButton text="Wheat Bread" toggleGroup="$breadGroup" onAction="#onSelectionChanged" />
             <RadioButton text="Sourdough" toggleGroup="$breadGroup" onAction="#onSelectionChanged" />
         </VBox>
 
@@ -32,8 +41,8 @@
             <Label text="Add-ons:" style="-fx-font-weight: bold;" />
             <CheckBox fx:id="cheese" text="Cheese (+$1.00)" onAction="#onSelectionChanged" />
             <CheckBox fx:id="lettuce" text="Lettuce (+$0.30)" onAction="#onSelectionChanged" />
-            <CheckBox fx:id="tomato" text="Tomato (+$0.30)" onAction="#onSelectionChanged" />
-            <CheckBox fx:id="onion" text="Onion (+$0.30)" onAction="#onSelectionChanged" />
+            <CheckBox fx:id="tomato" text="Tomatoes (+$0.30)" onAction="#onSelectionChanged" />
+            <CheckBox fx:id="onion" text="Onions (+$0.30)" onAction="#onSelectionChanged" />
         </VBox>
 
         <HBox spacing="8" alignment="CENTER">
@@ -51,4 +60,3 @@
 
     </VBox>
 </AnchorPane>
-

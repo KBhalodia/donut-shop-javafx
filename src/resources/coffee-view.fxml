@@ -2,12 +2,21 @@
 
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="main.controllers.CoffeeController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="main.controllers.CoffeeController"
+            style="-fx-background-color: linear-gradient(to bottom, #fffaf0, #fdebd3);">
     <VBox spacing="12.0" alignment="CENTER" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
 
         <Label text="Order Coffee" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+        <!-- Coffee Image -->
+        <ImageView fitHeight="200" fitWidth="200" preserveRatio="true">
+            <image>
+                <Image url="@images/coffee.jpg"/>
+            </image>
+        </ImageView>
 
         <HBox spacing="8" alignment="CENTER">
             <Label text="Cup Size:" />

@@ -28,6 +28,14 @@ public class CoffeeController {
 
     @FXML
     private void initialize() {
+        // Set window title
+        if (cupSizeCombo != null && cupSizeCombo.getScene() != null) {
+            Stage stage = (Stage) cupSizeCombo.getScene().getWindow();
+            if (stage != null) {
+                stage.setTitle("Ordering Coffee");
+            }
+        }
+        
         // Populate size options
         cupSizeCombo.getItems().setAll(CupSize.values());
         cupSizeCombo.getSelectionModel().selectFirst();
@@ -41,6 +49,13 @@ public class CoffeeController {
         // Listeners for real-time subtotal update
         cupSizeCombo.setOnAction(e -> updateSubtotal());
         quantitySpinner.valueProperty().addListener((obs, oldVal, newVal) -> updateSubtotal());
+        
+        // Listeners for add-in checkboxes
+        whippedCreamCheck.setOnAction(e -> updateSubtotal());
+        vanillaCheck.setOnAction(e -> updateSubtotal());
+        milkCheck.setOnAction(e -> updateSubtotal());
+        caramelCheck.setOnAction(e -> updateSubtotal());
+        mochaCheck.setOnAction(e -> updateSubtotal());
     }
 
     /** Handles Add to Order button click */
@@ -78,28 +93,29 @@ public class CoffeeController {
         updateSubtotal();
     }
 
-    /** Updates subtotal label dynamically */
+    /** Updates subtotal label dynamically using the Coffee model's price calculation */
     private void updateSubtotal() {
-        double subtotal = BASE_PRICE;
         CupSize size = cupSizeCombo.getValue();
+        
+        if (size == null) {
+            subtotalLabel.setText("Subtotal: $0.00");
+            return;
+        }
+        
         int quantity = quantitySpinner.getValue();
 
-        // Size adjustments
-        if (size == CupSize.TALL) subtotal += 0.60;
-        else if (size == CupSize.GRANDE) subtotal += 1.20;
-        else if (size == CupSize.VENTI) subtotal += 1.80;
+        // Create a temporary Coffee object to use its price calculation
+        Coffee tempCoffee = new Coffee(size, quantity);
+        
+        // Add selected add-ins
+        if (whippedCreamCheck.isSelected()) tempCoffee.addAddIn(AddIns.WHIPPED_CREAM);
+        if (vanillaCheck.isSelected()) tempCoffee.addAddIn(AddIns.VANILLA);
+        if (milkCheck.isSelected()) tempCoffee.addAddIn(AddIns.MILK);
+        if (caramelCheck.isSelected()) tempCoffee.addAddIn(AddIns.CARAMEL);
+        if (mochaCheck.isSelected()) tempCoffee.addAddIn(AddIns.MOCHA);
 
-        // Add-ins
-        int addInCount = 0;
-        if (whippedCreamCheck.isSelected()) addInCount++;
-        if (vanillaCheck.isSelected()) addInCount++;
-        if (milkCheck.isSelected()) addInCount++;
-        if (caramelCheck.isSelected()) addInCount++;
-        if (mochaCheck.isSelected()) addInCount++;
-
-        subtotal += addInCount * ADD_IN_COST;
-        subtotal *= quantity;
-
+        // Use the model's price calculation for consistency
+        double subtotal = tempCoffee.price();
         subtotalLabel.setText(String.format("Subtotal: $%.2f", subtotal));
     }
 
@@ -133,7 +149,25 @@ public class CoffeeController {
             javafx.stage.Stage stage =
                     (javafx.stage.Stage) ((javafx.scene.Node) event.getSource())
                             .getScene().getWindow();
-            stage.getScene().setRoot(root);
+            
+            // Preserve window size
+            double width = stage.getWidth();
+            double height = stage.getHeight();
+            
+            javafx.scene.Scene scene = stage.getScene();
+            if (scene == null) {
+                scene = new javafx.scene.Scene(root, width, height);
+                scene.getStylesheets().add(getClass().getResource("/app.css").toExternalForm());
+                stage.setScene(scene);
+            } else {
+                scene.setRoot(root);
+                // Ensure minimum size is maintained
+                if (width < 800) width = 900;
+                if (height < 600) height = 700;
+                stage.setWidth(width);
+                stage.setHeight(height);
+            }
+            stage.setTitle("RU Cafe");
         } catch (Exception e) {
             e.printStackTrace();
         }

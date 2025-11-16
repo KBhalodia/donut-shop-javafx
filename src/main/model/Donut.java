@@ -7,9 +7,9 @@ public class Donut extends MenuItem {
     private final String flavor;
 
     public Donut(DonutCategory type, String flavor, int quantity) {
+        super(quantity);
         this.type = type;
         this.flavor = flavor;
-        this.quantity = quantity;
     }
 
     @Override

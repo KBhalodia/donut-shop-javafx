@@ -17,6 +17,14 @@ public class AllOrdersController {
 
     @FXML
     private void initialize() {
+        // Set window title
+        if (ordersList != null && ordersList.getScene() != null) {
+            javafx.stage.Stage stage = (javafx.stage.Stage) ordersList.getScene().getWindow();
+            if (stage != null) {
+                stage.setTitle("Store Orders");
+            }
+        }
+        
         // register this instance in Main so other controllers can ask it to refresh
         Main.allOrdersController = this;
         reloadOrders();
@@ -91,7 +99,25 @@ public class AllOrdersController {
             javafx.stage.Stage stage =
                     (javafx.stage.Stage) ((javafx.scene.Node) event.getSource())
                             .getScene().getWindow();
-            stage.getScene().setRoot(root);
+            
+            // Preserve window size
+            double width = stage.getWidth();
+            double height = stage.getHeight();
+            
+            javafx.scene.Scene scene = stage.getScene();
+            if (scene == null) {
+                scene = new javafx.scene.Scene(root, width, height);
+                scene.getStylesheets().add(getClass().getResource("/app.css").toExternalForm());
+                stage.setScene(scene);
+            } else {
+                scene.setRoot(root);
+                // Ensure minimum size is maintained
+                if (width < 800) width = 900;
+                if (height < 600) height = 700;
+                stage.setWidth(width);
+                stage.setHeight(height);
+            }
+            stage.setTitle("RU Cafe");
         } catch (Exception e) {
             e.printStackTrace();
         }

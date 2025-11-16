@@ -3,11 +3,10 @@ package main.model;
 import main.enums.CupSize;
 import main.enums.AddIns;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Coffee extends MenuItem {
     private CupSize size;
-    private final List<AddIns> addIns;
+    private ArrayList<AddIns> addIns;
 
     public Coffee(CupSize size, int quantity) {
         super(quantity);
@@ -19,7 +18,7 @@ public class Coffee extends MenuItem {
     public CupSize getSize() { return size; }
     public void setSize(CupSize size) { this.size = size; }
 
-    public List<AddIns> getAddIns() { return addIns; }
+    public ArrayList<AddIns> getAddIns() { return addIns; }
     public boolean addAddIn(AddIns a) { return a != null && !addIns.contains(a) && addIns.add(a); }
     public boolean removeAddIn(AddIns a) { return addIns.remove(a); }
 

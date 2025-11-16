@@ -22,92 +22,97 @@
         <Label text="Main Menu"
                style="-fx-font-size: 18px; -fx-text-fill: #6d4c41;" />
 
-        <!-- Buttons Grid -->
-        <GridPane hgap="20" vgap="20">
-            <columnConstraints>
-                <ColumnConstraints halignment="CENTER" />
-                <ColumnConstraints halignment="CENTER" />
-            </columnConstraints>
+         <!-- Buttons Grid -->
+         <GridPane hgap="20" vgap="20" alignment="CENTER" maxWidth="Infinity" VBox.vgrow="ALWAYS">
+             <columnConstraints>
+                 <ColumnConstraints hgrow="ALWAYS" minWidth="190" prefWidth="190" maxWidth="Infinity" halignment="CENTER" />
+                 <ColumnConstraints hgrow="ALWAYS" minWidth="190" prefWidth="190" maxWidth="Infinity" halignment="CENTER" />
+             </columnConstraints>
 
-            <rowConstraints>
-                <RowConstraints valignment="CENTER" />
-                <RowConstraints valignment="CENTER" />
-                <RowConstraints valignment="CENTER" />
-            </rowConstraints>
+             <rowConstraints>
+                 <RowConstraints valignment="CENTER" />
+                 <RowConstraints valignment="CENTER" />
+                 <RowConstraints valignment="CENTER" />
+             </rowConstraints>
 
-            <!-- Row 0 -->
-            <Button text="☕ Order Coffee"
-                    prefWidth="190" prefHeight="70"
-                    GridPane.rowIndex="0" GridPane.columnIndex="0"
-                    onAction="#onOpenCoffee"
-                    style="
-                        -fx-background-radius: 35;
-                        -fx-background-color: #f4a261;
-                        -fx-text-fill: white;
-                        -fx-font-size: 15px;
-                        -fx-font-weight: bold;
-                        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 6, 0, 0, 2);
-                    " />
+             <!-- Row 0 -->
+             <Button text="☕ Order Coffee"
+                     maxWidth="Infinity" prefHeight="70"
+                     GridPane.rowIndex="0" GridPane.columnIndex="0"
+                     GridPane.hgrow="ALWAYS"
+                     onAction="#onOpenCoffee"
+                     style="
+                         -fx-background-radius: 35;
+                         -fx-background-color: #f4a261;
+                         -fx-text-fill: white;
+                         -fx-font-size: 15px;
+                         -fx-font-weight: bold;
+                         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 6, 0, 0, 2);
+                     " />
 
-            <Button text="🍩 Order Donuts"
-                    prefWidth="190" prefHeight="70"
-                    GridPane.rowIndex="0" GridPane.columnIndex="1"
-                    onAction="#onOpenDonuts"
-                    style="
-                        -fx-background-radius: 35;
-                        -fx-background-color: #e76f51;
-                        -fx-text-fill: white;
-                        -fx-font-size: 15px;
-                        -fx-font-weight: bold;
-                        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 6, 0, 0, 2);
-                    " />
+             <Button text="🍩 Order Donuts"
+                     maxWidth="Infinity" prefHeight="70"
+                     GridPane.rowIndex="0" GridPane.columnIndex="1"
+                     GridPane.hgrow="ALWAYS"
+                     onAction="#onOpenDonuts"
+                     style="
+                         -fx-background-radius: 35;
+                         -fx-background-color: #e76f51;
+                         -fx-text-fill: white;
+                         -fx-font-size: 15px;
+                         -fx-font-weight: bold;
+                         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 6, 0, 0, 2);
+                     " />
 
-            <!-- Row 1 -->
-            <Button text="🥪 Order Sandwich"
-                    prefWidth="190" prefHeight="70"
-                    GridPane.rowIndex="1" GridPane.columnIndex="0"
-                    onAction="#onOpenSandwich"
-                    style="
-                        -fx-background-radius: 35;
-                        -fx-background-color: #2a9d8f;
-                        -fx-text-fill: white;
-                        -fx-font-size: 15px;
-                        -fx-font-weight: bold;
-                        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 6, 0, 0, 2);
-                    " />
+             <!-- Row 1 -->
+             <Button text="🥪 Order Sandwich"
+                     maxWidth="Infinity" prefHeight="70"
+                     GridPane.rowIndex="1" GridPane.columnIndex="0"
+                     GridPane.hgrow="ALWAYS"
+                     onAction="#onOpenSandwich"
+                     style="
+                         -fx-background-radius: 35;
+                         -fx-background-color: #2a9d8f;
+                         -fx-text-fill: white;
+                         -fx-font-size: 15px;
+                         -fx-font-weight: bold;
+                         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 6, 0, 0, 2);
+                     " />
 
-            <Button text="🧾 Current Order"
-                    prefWidth="190" prefHeight="70"
-                    GridPane.rowIndex="1" GridPane.columnIndex="1"
-                    onAction="#onOpenCurrentOrder"
-                    style="
-                        -fx-background-radius: 35;
-                        -fx-background-color: #8d99ae;
-                        -fx-text-fill: white;
-                        -fx-font-size: 15px;
-                        -fx-font-weight: bold;
-                        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 6, 0, 0, 2);
-                    " />
+             <Button text="🧾 Current Order"
+                     maxWidth="Infinity" prefHeight="70"
+                     GridPane.rowIndex="1" GridPane.columnIndex="1"
+                     GridPane.hgrow="ALWAYS"
+                     onAction="#onOpenCurrentOrder"
+                     style="
+                         -fx-background-radius: 35;
+                         -fx-background-color: #8d99ae;
+                         -fx-text-fill: white;
+                         -fx-font-size: 15px;
+                         -fx-font-weight: bold;
+                         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 6, 0, 0, 2);
+                     " />
 
-            <!-- Row 2 -->
-            <Button text="📚 Store Orders"
-                    prefWidth="400" prefHeight="70"
-                    GridPane.rowIndex="2" GridPane.columnIndex="0"
-                    GridPane.columnSpan="2"
-                    onAction="#onOpenStoreOrders"
-                    style="
-                        -fx-background-radius: 35;
-                        -fx-background-color: #f2c94c;
-                        -fx-text-fill: #5d4037;
-                        -fx-font-size: 15px;
-                        -fx-font-weight: bold;
-                        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 6, 0, 0, 2);
-                    " />
-        </GridPane>
+             <!-- Row 2 -->
+             <Button text="📚 Store Orders"
+                     maxWidth="Infinity" prefHeight="70"
+                     GridPane.rowIndex="2" GridPane.columnIndex="0"
+                     GridPane.columnSpan="2"
+                     GridPane.hgrow="ALWAYS"
+                     onAction="#onOpenStoreOrders"
+                     style="
+                         -fx-background-radius: 35;
+                         -fx-background-color: #f2c94c;
+                         -fx-text-fill: #5d4037;
+                         -fx-font-size: 15px;
+                         -fx-font-weight: bold;
+                         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.25), 6, 0, 0, 2);
+                     " />
+         </GridPane>
 
         <!-- Content area where other views load -->
         <StackPane fx:id="contentArea"
-                   prefHeight="400" prefWidth="600"
+                   prefHeight="200" prefWidth="600"
                    style="
                        -fx-background-color: #fffaf0;
                        -fx-background-radius: 25;

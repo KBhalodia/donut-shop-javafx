@@ -4,12 +4,11 @@ import main.enums.Bread;
 import main.enums.Protein;
 import main.enums.AddOns;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Sandwich extends MenuItem {
-    private Bread bread;
-    private Protein protein;
-    private final List<AddOns> addOns;
+    protected Bread bread;
+    protected Protein protein;
+    protected ArrayList<AddOns> addOns;
 
     public Sandwich(Bread bread, Protein protein, int quantity) {
         super(quantity);
@@ -23,7 +22,7 @@ public class Sandwich extends MenuItem {
     public void setBread(Bread bread) { this.bread = bread; }
     public Protein getProtein() { return protein; }
     public void setProtein(Protein protein) { this.protein = protein; }
-    public List<AddOns> getAddOns() { return addOns; }
+    public ArrayList<AddOns> getAddOns() { return addOns; }
 
     public boolean addAddOn(AddOns a) { return a != null && !addOns.contains(a) && addOns.add(a); }
     public boolean removeAddOn(AddOns a) { return addOns.remove(a); }

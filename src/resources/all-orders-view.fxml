@@ -2,12 +2,22 @@
 
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="main.controllers.AllOrdersController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="main.controllers.AllOrdersController"
+            style="-fx-background-color: linear-gradient(to bottom, #fffaf0, #fdebd3);">
     <VBox spacing="15.0" AnchorPane.topAnchor="15" AnchorPane.leftAnchor="15" AnchorPane.rightAnchor="15" AnchorPane.bottomAnchor="15">
 
-        <Label text="Store Orders" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+        <!-- Title with Orders Image -->
+        <HBox spacing="10" alignment="CENTER">
+            <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                <image>
+                    <Image url="@images/orders.jpg"/>
+                </image>
+            </ImageView>
+            <Label text="Store Orders" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+        </HBox>
 
         <HBox spacing="15" VBox.vgrow="ALWAYS">
             <VBox spacing="5" prefWidth="250">
@@ -29,4 +39,3 @@
 
     </VBox>
 </AnchorPane>
-

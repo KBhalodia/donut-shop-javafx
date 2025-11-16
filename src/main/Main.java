@@ -21,13 +21,13 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/main-view.fxml"));
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 900, 700); // Set initial size
         scene.getStylesheets().add(getClass().getResource("/app.css").toExternalForm());
         stage.setTitle("RU Cafe");
+        stage.setMinWidth(800);
+        stage.setMinHeight(600);
         stage.setScene(scene);
         stage.show();
-
-
     }
 
     public static void main(String[] args) {

@@ -42,12 +42,22 @@ public class StoreOrders {
         return sb.toString();
     }
 
-    /** Exports orders to text file format (placeholder for controller use) */
+    /** Exports orders to text file format with order number, items list, and total amount */
     public String export() {
         StringBuilder sb = new StringBuilder();
         for (Order order : orders) {
             sb.append("Order #").append(order.getOrderNumber()).append("\n");
-            sb.append(order.toString()).append("\n\n");
+            sb.append("Items:\n");
+            
+            // List all menu items in the order
+            for (var item : order.getItems()) {
+                sb.append("  • ").append(item.toString()).append("\n");
+            }
+            
+            sb.append("Subtotal: $").append(String.format("%.2f", order.getSubtotal())).append("\n");
+            sb.append("Tax: $").append(String.format("%.2f", order.getTax())).append("\n");
+            sb.append("Total: $").append(String.format("%.2f", order.getTotal())).append("\n");
+            sb.append("\n");
         }
         return sb.toString();
     }

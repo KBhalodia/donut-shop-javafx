@@ -5,12 +5,20 @@
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="main.controllers.DonutController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="main.controllers.DonutController"
+            style="-fx-background-color: linear-gradient(to bottom, #fffaf0, #fdebd3);">
     <VBox spacing="12.0" alignment="CENTER"
           AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
 
         <Label text="Order Donuts"
                style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+        <!-- Donuts Image -->
+        <ImageView fx:id="itemImage" fitHeight="200" fitWidth="200" preserveRatio="true">
+            <image>
+                <Image url="@images/donuts.jpg"/>
+            </image>
+        </ImageView>
 
         <!-- Donut Type -->
         <HBox spacing="8" alignment="CENTER">
@@ -37,9 +45,6 @@
             <Button text="Clear" onAction="#onTypeChanged" />
             <Button text="Back to Main Menu" onAction="#onBackToMainMenu" />
         </HBox>
-
-        <!-- Image -->
-        <ImageView fx:id="itemImage" fitHeight="150" fitWidth="150" preserveRatio="true" />
 
         <!-- Price -->
         <Label fx:id="priceLabel" text="Price: $0.00"

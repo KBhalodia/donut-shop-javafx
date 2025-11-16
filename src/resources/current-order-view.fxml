@@ -2,11 +2,21 @@
 
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="main.controllers.CurrentOrderController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="main.controllers.CurrentOrderController"
+            style="-fx-background-color: linear-gradient(to bottom, #fffaf0, #fdebd3);">
     <VBox spacing="15.0" AnchorPane.topAnchor="15" AnchorPane.leftAnchor="15" AnchorPane.rightAnchor="15" AnchorPane.bottomAnchor="15">
 
-        <Label text="Current Order" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+        <!-- Title with Cart Image -->
+        <HBox spacing="10" alignment="CENTER">
+            <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                <image>
+                    <Image url="@images/cart.png"/>
+                </image>
+            </ImageView>
+            <Label text="Current Order" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+        </HBox>
 
         <VBox spacing="5">
             <Label text="Items in Order:" />
@@ -38,4 +48,3 @@
 
     </VBox>
 </AnchorPane>
-

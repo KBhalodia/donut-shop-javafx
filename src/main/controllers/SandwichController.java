@@ -20,6 +20,14 @@ public class SandwichController {
 
     @FXML
     private void initialize() {
+        // Set window title
+        if (qtySpinner != null && qtySpinner.getScene() != null) {
+            javafx.stage.Stage stage = (javafx.stage.Stage) qtySpinner.getScene().getWindow();
+            if (stage != null) {
+                stage.setTitle("Ordering Sandwich");
+            }
+        }
+        
         // quantity 1–10
         SpinnerValueFactory<Integer> vf =
                 new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1);
@@ -128,7 +136,25 @@ public class SandwichController {
             javafx.stage.Stage stage =
                     (javafx.stage.Stage) ((javafx.scene.Node) event.getSource())
                             .getScene().getWindow();
-            stage.getScene().setRoot(root);
+            
+            // Preserve window size
+            double width = stage.getWidth();
+            double height = stage.getHeight();
+            
+            javafx.scene.Scene scene = stage.getScene();
+            if (scene == null) {
+                scene = new javafx.scene.Scene(root, width, height);
+                scene.getStylesheets().add(getClass().getResource("/app.css").toExternalForm());
+                stage.setScene(scene);
+            } else {
+                scene.setRoot(root);
+                // Ensure minimum size is maintained
+                if (width < 800) width = 900;
+                if (height < 600) height = 700;
+                stage.setWidth(width);
+                stage.setHeight(height);
+            }
+            stage.setTitle("RU Cafe");
         } catch (Exception e) {
             e.printStackTrace();
         }
