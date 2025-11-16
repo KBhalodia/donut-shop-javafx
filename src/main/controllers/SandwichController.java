@@ -8,7 +8,11 @@ import main.enums.Protein;
 import main.enums.AddOns;
 import main.model.Sandwich;
 import main.model.MenuItem;
-
+/**
+ * Controller for the sandwich ordering view.
+ * Manages bread, protein, add-on selections and quantity, provides live
+ * price updates, and allows adding a sandwich to the current order.
+ */
 public class SandwichController {
 
     @FXML private ToggleGroup proteinGroup; // beef, chicken, salmon
@@ -17,7 +21,10 @@ public class SandwichController {
     @FXML private Spinner<Integer> qtySpinner;
     @FXML private Label priceLabel;
     @FXML private Button addBtn;
-
+    /**
+     * Initializes the sandwich ordering view by configuring the quantity spinner,
+     * registering listeners on all controls, and computing the initial price.
+     */
     @FXML
     private void initialize() {
         // Set window title
@@ -46,12 +53,21 @@ public class SandwichController {
 
         updatePrice();
     }
-
+    /**
+     * Handles selection changes for any of the sandwich controls.
+     * Simply recomputes the price using the current selections.
+     */
     @FXML
     private void onSelectionChanged() {
         updatePrice();
     }
-
+    /**
+     * Handles the "Add to Order" button click.
+     * Creates a {@link Sandwich} based on user selections, adds it to
+     * {@link Main#currentOrder}, refreshes the current order view if open,
+     * and shows a confirmation alert. If a required selection is missing,
+     * a warning alert is shown instead.
+     */
     @FXML
     private void onAddToOrder() {
         Protein protein = getSelectedProtein();
@@ -78,7 +94,11 @@ public class SandwichController {
 
         showAlert("Sandwich Added", "Sandwich added to current order.");
     }
-
+    /**
+     * Recomputes the price label based on the current sandwich selections,
+     * including bread, protein, add-ons, and quantity. When required fields
+     * are missing, the price is shown as $0.00.
+     */
     private void updatePrice() {
         Protein protein = getSelectedProtein();
         Bread bread = getSelectedBread(); // bread doesn’t change price but used to validate
@@ -99,7 +119,11 @@ public class SandwichController {
         double p = temp.price();
         priceLabel.setText(String.format("$%.2f", p));
     }
-
+    /**
+     * Determines the selected protein based on the text of the chosen radio button.
+     *
+     * @return the selected {@link Protein}, or null if none is selected
+     */
     private Protein getSelectedProtein() {
         Toggle t = proteinGroup.getSelectedToggle();
         if (t == null) return null;
@@ -109,7 +133,11 @@ public class SandwichController {
         if (text.contains("salmon")) return Protein.SALMON;
         return null;
     }
-
+    /**
+     * Determines the selected bread based on the text of the chosen radio button.
+     *
+     * @return the selected {@link Bread}, or null if none is selected
+     */
     private Bread getSelectedBread() {
         Toggle t = breadGroup.getSelectedToggle();
         if (t == null) return null;
@@ -119,7 +147,12 @@ public class SandwichController {
         if (text.contains("sourdough")) return Bread.SOURDOUGH;
         return null;
     }
-
+    /**
+     * Shows an informational alert dialog with the given title and message.
+     *
+     * @param title title for the alert
+     * @param msg   message body for the alert
+     */
     private void showAlert(String title, String msg) {
         Alert a = new Alert(Alert.AlertType.INFORMATION);
         a.setTitle(title);
@@ -127,6 +160,12 @@ public class SandwichController {
         a.setContentText(msg);
         a.showAndWait();
     }
+    /**
+     * Handles navigation back to the main menu view (main-view.fxml).
+     * Preserves the current window size and reapplies the stylesheet.
+     *
+     * @param event the action event triggered by the Back button
+     */
     @FXML
     private void onBackToMainMenu(javafx.event.ActionEvent event) {
         try {

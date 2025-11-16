@@ -9,7 +9,7 @@
             style="-fx-background-color: linear-gradient(to bottom, #fffaf0, #fdebd3);">
     <VBox spacing="12.0" alignment="CENTER" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
 
-        <Label text="Order Coffee" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+        <Label text="☕Order Coffee☕" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
 
         <!-- Coffee Image -->
         <ImageView fitHeight="200" fitWidth="200" preserveRatio="true">
@@ -42,9 +42,9 @@
         <Label fx:id="subtotalLabel" text="Subtotal: $0.00" style="-fx-font-size: 14px;" />
 
         <HBox spacing="10" alignment="CENTER">
-            <Button fx:id="addButton" text="Add to Order" onAction="#onAddCoffee" />
-            <Button fx:id="clearButton" text="Clear" onAction="#onClear" />
-            <Button text="Back to Main Menu" onAction="#onBackToMainMenu" />
+            <Button fx:id="addButton" text="Add to Order" styleClass="ru-button" onAction="#onAddCoffee" />
+            <Button fx:id="clearButton" text="Clear" styleClass="ru-button" onAction="#onClear" />
+            <Button text="Back to Main Menu" styleClass="ru-button" onAction="#onBackToMainMenu" />
         </HBox>
 
     </VBox>

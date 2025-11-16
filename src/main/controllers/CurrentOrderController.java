@@ -5,13 +5,21 @@ import javafx.scene.control.*;
 import main.Main;
 import main.model.MenuItem;
 import main.model.Order;
-
+/**
+ * Controller for the current order view.
+ * Displays all items in the current order, allows items to be removed or cleared,
+ * and lets the user place the order into the store-wide list of orders.
+ */
 public class CurrentOrderController {
 
     @FXML private ListView<String> itemList; // display each item's summary string
     @FXML private Label subtotalLabel, taxLabel, totalLabel;
     @FXML private Button removeSelectedBtn, clearBtn, placeOrderBtn;
-
+    /**
+     * Initializes the current order view by setting the window title,
+     * registering this controller with {@link Main}, and refreshing
+     * the displayed items and totals.
+     */
     @FXML
     private void initialize() {
         // Set window title
@@ -26,6 +34,10 @@ public class CurrentOrderController {
         main.Main.currentOrderController = this;
         refreshTotals();
     }
+    /**
+     * Handles the removal of the selected item from the current order.
+     * Shows a warning alert if no item is selected.
+     */
 
     @FXML
     private void onRemoveSelected() {
@@ -42,7 +54,10 @@ public class CurrentOrderController {
             alert.showAndWait();
         }
     }
-
+    /**
+     * Handles clearing all items from the current order.
+     * Prompts for confirmation before deleting non-empty orders.
+     */
     @FXML
     private void onClearAll() {
         if (Main.currentOrder.getItems().isEmpty()) {
@@ -59,7 +74,12 @@ public class CurrentOrderController {
             refreshTotals();
         }
     }
-
+    /**
+     * Handles placing the current order into the store orders list.
+     * If the order is empty, shows a warning. Otherwise it adds the
+     * current order to {@link Main#storeOrders}, creates a new current
+     * order, and shows a confirmation alert.
+     */
     @FXML
     private void onPlaceOrder() {
         if (Main.currentOrder.getItems().isEmpty()) {
@@ -89,13 +109,10 @@ public class CurrentOrderController {
         confirm.setContentText("The order has been added to Store Orders.");
         confirm.showAndWait();
     }
-
-
-
-
     /**
      * Refreshes the display with current order items and totals.
-     * This method reads from Main.currentOrder and updates the UI.
+     * This method reads from {@link Main#currentOrder} and updates the UI.
+     * Can be called from other controllers when the current order changes.
      */
     public void refreshTotals() {
         // Update item list
@@ -113,6 +130,12 @@ public class CurrentOrderController {
         taxLabel.setText(String.format("$%.2f", tax));
         totalLabel.setText(String.format("$%.2f", total));
     }
+    /**
+     * Handles navigation back to the main menu view (main-view.fxml).
+     * Preserves the current window size and reapplies the stylesheet.
+     *
+     * @param event the action event triggered by the Back button
+     */
     @FXML
     private void onBackToMainMenu(javafx.event.ActionEvent event) {
         try {

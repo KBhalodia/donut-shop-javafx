@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/RUDonut.iml" filepath="$PROJECT_DIR$/RUDonut.iml" />
+      <module fileurl="file://$PROJECT_DIR$/javadoc/RUDonut.iml" filepath="$PROJECT_DIR$/javadoc/RUDonut.iml" />
     </modules>
   </component>
 </project>

@@ -4,6 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.Insets?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="main.controllers.MainController"
             style="-fx-background-color: linear-gradient(to bottom, #fffaf0, #fdebd3);">
@@ -16,8 +18,11 @@
           AnchorPane.rightAnchor="20">
 
         <!-- Title -->
-        <Label text="RUcafe ☕"
-               style="-fx-font-size: 30px; -fx-font-weight: bold; -fx-text-fill: #4e342e;" />
+        <ImageView fitHeight="150" preserveRatio="true">
+            <image>
+                <Image url="@images/rucafe-logo.png" />
+            </image>
+        </ImageView>
 
         <Label text="Main Menu"
                style="-fx-font-size: 18px; -fx-text-fill: #6d4c41;" />

@@ -13,8 +13,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * Controller for Coffee Ordering View.
- * Handles user selections for size, add-ins, quantity, and subtotal calculation.
+ * Controller for the coffee ordering view.
+ * Manages cup size, add-ins, quantity selection, and live subtotal calculation,
+ * and allows the user to add a coffee order to the current order.
  */
 public class CoffeeController {
 
@@ -25,7 +26,10 @@ public class CoffeeController {
 
     private static final double ADD_IN_COST = 0.25;
     private static final double BASE_PRICE = 2.39;
-
+    /**
+     * Initializes the coffee ordering view by setting up the cup size options,
+     * quantity spinner, listeners for controls, and computing the initial subtotal.
+     */
     @FXML
     private void initialize() {
         // Set window title
@@ -58,7 +62,12 @@ public class CoffeeController {
         mochaCheck.setOnAction(e -> updateSubtotal());
     }
 
-    /** Handles Add to Order button click */
+    /**
+     * Handles the "Add to Order" button click.
+     * Creates a {@link Coffee} object based on the user's selections, adds it
+     * to {@link Main#currentOrder}, refreshes the current order view if open,
+     * and shows a confirmation alert.
+     */
     @FXML
     private void onAddCoffee() {
         CupSize size = cupSizeCombo.getValue();
@@ -80,7 +89,11 @@ public class CoffeeController {
         showAlert("Coffee Added", "Coffee successfully added to current order!");
     }
 
-    /** Handles Clear button click */
+    /**
+     * Handles the "Clear" button click.
+     * Resets the cup size, unchecks all add-ins, resets quantity to 1,
+     * and recomputes the subtotal.
+     */
     @FXML
     private void onClear() {
         cupSizeCombo.getSelectionModel().selectFirst();
@@ -93,7 +106,10 @@ public class CoffeeController {
         updateSubtotal();
     }
 
-    /** Updates subtotal label dynamically using the Coffee model's price calculation */
+    /**
+     * Recalculates and updates the subtotal label using the {@link Coffee} model's
+     * price calculation. If no size is selected, the subtotal is set to $0.00.
+     */
     private void updateSubtotal() {
         CupSize size = cupSizeCombo.getValue();
         
@@ -119,7 +135,12 @@ public class CoffeeController {
         subtotalLabel.setText(String.format("Subtotal: $%.2f", subtotal));
     }
 
-    /** Helper for alert pop-ups */
+    /**
+     * Displays an informational alert dialog with the given title and message.
+     *
+     * @param title the alert window title
+     * @param msg   the alert message body
+     */
     private void showAlert(String title, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -127,19 +148,11 @@ public class CoffeeController {
         alert.setContentText(msg);
         alert.showAndWait();
     }
-
-    @FXML
-    private void onBackToMenu() {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/main-menu.fxml"));
-            Stage stage = (Stage) cupSizeCombo.getScene().getWindow();
-            stage.setTitle("RU Donuts - Main Menu");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    /**
+     * Handles navigation back to the main menu view (main-view.fxml).
+     * Preserves the current window size and reapplies the stylesheet.
+     *      * @param event the action event triggered by the Back button
+     */
     @FXML
     private void onBackToMainMenu(javafx.event.ActionEvent event) {
         try {

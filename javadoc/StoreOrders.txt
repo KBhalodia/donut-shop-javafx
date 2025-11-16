@@ -1,0 +1,9 @@
+Order #10001
+Items:
+  • Sandwich x1 $16.89
+  • HOLE Donut - Powdered Holes x10 ($3.90)
+  • Coffee x1 $4.69
+Subtotal: $25.48
+Tax: $1.69
+Total: $27.17
+

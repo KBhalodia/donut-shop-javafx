@@ -39,11 +39,11 @@
         </VBox>
 
         <HBox spacing="10" alignment="CENTER">
-            <Button fx:id="removeSelectedBtn" text="Remove Selected" onAction="#onRemoveSelected" />
-            <Button fx:id="clearBtn" text="Clear Order" onAction="#onClearAll" />
-            <Button fx:id="placeOrderBtn" text="Place Order" onAction="#onPlaceOrder" 
+            <Button fx:id="removeSelectedBtn" text="Remove Selected" styleClass="ru-button" onAction="#onRemoveSelected" />
+            <Button fx:id="clearBtn" text="Clear Order" styleClass="ru-button" onAction="#onClearAll" />
+            <Button fx:id="placeOrderBtn" text="Place Order" styleClass="ru-button" onAction="#onPlaceOrder"
                     style="-fx-font-size: 14px; -fx-font-weight: bold;" />
-            <Button text="Back to Main Menu" onAction="#onBackToMainMenu" />
+            <Button text="Back to Main Menu" styleClass="ru-button" onAction="#onBackToMainMenu" />
         </HBox>
 
     </VBox>

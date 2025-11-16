@@ -5,34 +5,51 @@ import java.util.ArrayList;
 /**
  * The StoreOrders class keeps track of all orders placed in the store.
  * It allows adding, removing, viewing, and exporting orders.
- * @author Kavya
  */
 public class StoreOrders {
 
     private ArrayList<Order> orders;
-
+    /**
+     * Creates an empty list of store orders.
+     */
     public StoreOrders() {
         orders = new ArrayList<>();
     }
 
-    /** Adds an order to the store’s order list */
+    /**
+     * Adds an order to the store order list.
+     *
+     * @param order the order to add
+     */
     public void addOrder(Order order) {
         if (order != null && !orders.contains(order)) {
             orders.add(order);
         }
     }
 
-    /** Removes an order from the store’s order list */
+    /**
+     * Removes an order from the store.
+     *
+     * @param order the order to remove
+     */
     public void removeOrder(Order order) {
         orders.remove(order);
     }
 
-    /** Returns the list of all placed orders */
+    /**
+     * Returns all store orders.
+     *
+     * @return list of orders
+     */
     public ArrayList<Order> getOrders() {
         return orders;
     }
 
-    /** Returns a string representation of all orders */
+    /**
+     * Returns a formatted string listing all orders.
+     *
+     * @return summary of all orders
+     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -42,7 +59,12 @@ public class StoreOrders {
         return sb.toString();
     }
 
-    /** Exports orders to text file format with order number, items list, and total amount */
+    /**
+     * Creates an export-friendly multi-line string for all orders.
+     * Includes order number, items, subtotal, tax, and total.
+     *
+     * @return formatted text for exporting
+     */
     public String export() {
         StringBuilder sb = new StringBuilder();
         for (Order order : orders) {

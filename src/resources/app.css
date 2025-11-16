@@ -1,6 +1,6 @@
 /* Overall background */
 .root {
-    -fx-background-color: linear-gradient(to bottom, #fff7eb, #ffe1c4);
+    -fx-background-color: linear-gradient(to bottom, #fff4b8, #ffd46a);
     -fx-font-family: "System";
 }
 
@@ -63,4 +63,98 @@
 .total-label {
     -fx-font-weight: bold;
     -fx-text-fill: #5b3b2a;
+}
+
+/* Shared Button Style */
+.ru-button {
+    -fx-background-color: #ffcf9e;     /* soft orange pastel */
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-color: #d29b6c;
+    -fx-border-width: 1.5;
+    -fx-text-fill: #5b3b2a;
+    -fx-font-size: 14px;
+    -fx-padding: 8 20 8 20;
+    -fx-font-weight: bold;
+}
+
+.ru-button:hover {
+    -fx-background-color: #ffb97a;
+}
+
+/*  ComboBoxes */
+.combo-box {
+    -fx-background-color: #ffe6cc;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: #d29b6c;
+    -fx-border-width: 1.2;
+    -fx-padding: 4;
+    -fx-font-size: 14px;
+    -fx-text-fill: #5b3b2a;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+/*  Checkboxes & Radio Buttons  */
+.check-box, .radio-button {
+    -fx-font-size: 14px;
+    -fx-text-fill: #5b3b2a;
+}
+
+.check-box .box, .radio-button .radio {
+    -fx-border-color: #d29b6c;
+    -fx-background-color: #fff3e1;
+}
+
+.check-box:selected .box,
+.radio-button:selected .radio {
+    -fx-background-color: #ffb97a;
+}
+
+/*  Quantity Spinner  */
+.spinner {
+    -fx-background-color: #ffe6cc;
+    -fx-border-color: #d29b6c;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+}
+
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-background-color: #ffdcb3;
+}
+
+.spinner .increment-arrow-button:hover,
+.spinner .decrement-arrow-button:hover {
+    -fx-background-color: #ffca8a;
+}
+
+/*  TextArea for Current Order  */
+.text-area {
+    -fx-background-color: #fff7eb;
+    -fx-border-color: #d29b6c;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-text-fill: #5b3b2a;
+    -fx-font-size: 14px;
+}
+
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #5b3b2a;
+}
+
+/* Horizontal dividing line under each section title */
+.separator {
+    -fx-background-color: #d29b6c;
+}
+
+/* Vertical divider  */
+.divider {
+    -fx-background-color: #e6be95;
+    -fx-padding: 0 4 0 4;
 }

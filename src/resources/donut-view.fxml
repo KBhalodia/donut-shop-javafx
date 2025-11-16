@@ -10,7 +10,7 @@
     <VBox spacing="12.0" alignment="CENTER"
           AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
 
-        <Label text="Order Donuts"
+        <Label text="🍩Order Donuts🍩"
                style="-fx-font-size: 20px; -fx-font-weight: bold;" />
 
         <!-- Donuts Image -->
@@ -41,9 +41,9 @@
 
         <!-- ⭐ Moved Buttons HERE (closer to Quantity) -->
         <HBox spacing="10" alignment="CENTER">
-            <Button fx:id="addBtn" text="Add to Order" onAction="#onAddToOrder" />
-            <Button text="Clear" onAction="#onTypeChanged" />
-            <Button text="Back to Main Menu" onAction="#onBackToMainMenu" />
+            <Button fx:id="addBtn" text="Add to Order" styleClass="ru-button" onAction="#onAddToOrder" />
+            <Button text="Clear" styleClass="ru-button" onAction="#onTypeChanged" />
+            <Button text="Back to Main Menu" styleClass="ru-button" onAction="#onBackToMainMenu" />
         </HBox>
 
         <!-- Price -->

@@ -14,7 +14,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
 
-
+/**
+ * Controller for the donut ordering view.
+ * Allows the user to select a donut category, flavor, quantity,
+ * and view a live price preview before adding the donut to the current order.
+ */
 public class DonutController {
 
     @FXML private ComboBox<String> donutTypeCombo;   // yeast, cake, holes, seasonal
@@ -37,7 +41,11 @@ public class DonutController {
     private static final String[] SEASONAL_FLAVORS = {
             "Spooky Donuts", "Pumpkin Spice Donuts"
     };
-
+    /**
+     * Initializes the donut ordering view.
+     * Sets up the donut type combo box, quantity spinner, selection listeners,
+     * and loads the initial flavors, image, and price.
+     */
     @FXML
     private void initialize() {
         // Set window title
@@ -70,7 +78,10 @@ public class DonutController {
         updatePrice();
     }
 
-    // Called by FXML on type combo change
+    /**
+     * Handles changes to the selected donut type in the combo box.
+     * Reloads the flavor list, updates the image, and recomputes the price.
+     */
     @FXML
     private void onTypeChanged() {
         loadFlavorsForCurrentType();
@@ -78,19 +89,28 @@ public class DonutController {
         updatePrice();
     }
 
-    // Called when a flavor is clicked
+    /**
+     * Handles changes to the selected flavor in the flavor list.
+     * Recomputes the price using the new selection.
+     */
     @FXML
     private void onFlavorSelected() {
         updatePrice();
     }
 
-    // Called when qty spinner changes
+    /**
+     * Handles changes to the quantity spinner value.
+     * Recomputes the price using the new quantity.
+     */
     @FXML
     private void onQtyChanged() {
         updatePrice();
     }
 
-    // Clear button handler (we’ll point FXML to this)
+    /**
+     * Clears the current donut selection by resetting the type, flavors,
+     * quantity, image, and price to their default values.
+     */
     @FXML
     private void onClear() {
         donutTypeCombo.getSelectionModel().selectFirst();
@@ -101,7 +121,11 @@ public class DonutController {
         updatePrice();
     }
 
-    // Add selected donut to current order
+    /**
+     * Adds the currently selected donut (category, flavor, and quantity)
+     * to the shared current order, updates the current order view if open,
+     * and shows a confirmation alert.
+     */
     @FXML
     private void onAddToOrder() {
         DonutCategory type = getSelectedType();
@@ -127,7 +151,10 @@ public class DonutController {
         onClear();
     }
 
-    /** Reload flavors based on the currently selected type string */
+    /**
+     * Reloads the flavor list based on the currently selected donut type.
+     * If there are flavors available, the first flavor is automatically selected.
+     */
     private void loadFlavorsForCurrentType() {
         flavorList.getItems().clear();
         DonutCategory type = getSelectedType();
@@ -145,7 +172,12 @@ public class DonutController {
         }
     }
 
-    /** Map combo text → DonutCategory enum used in your Donut model */
+    /**
+     * Converts the currently selected text in the donut type combo box
+     * into the corresponding {@link DonutCategory} enum value.
+     *
+     * @return the selected donut category, or {@code null} if none is selected
+     */
     private DonutCategory getSelectedType() {
         String s = donutTypeCombo.getSelectionModel().getSelectedItem();
         if (s == null) return null;
@@ -158,7 +190,11 @@ public class DonutController {
         };
     }
 
-    /** Update image based on selected type - using donuts.jpg for all types */
+    /**
+     * Updates the donut image preview based on the currently selected donut type.
+     * Currently all donut types use the same image resource.
+     * If the image cannot be loaded, the image view is cleared.
+     */
     private void updateImage() {
         DonutCategory type = getSelectedType();
         if (type == null) {
@@ -179,7 +215,11 @@ public class DonutController {
         }
     }
 
-    /** Live price preview using your Donut.price() logic */
+    /**
+     * Computes and displays the current price of the selected donut order
+     * using the {@link Donut#price()} method. If the selection is incomplete,
+     * the price label is reset to $0.00.
+     */
     private void updatePrice() {
         DonutCategory type = getSelectedType();
         String flavor = flavorList.getSelectionModel().getSelectedItem();
@@ -193,7 +233,12 @@ public class DonutController {
         double p = temp.price();
         priceLabel.setText(String.format("Price: $%.2f", p));
     }
-
+    /**
+     * Displays an informational alert dialog with the given title and message.
+     *
+     * @param title the title to show in the alert window
+     * @param msg   the message text to display in the alert
+     */
     private void showAlert(String title, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -201,18 +246,12 @@ public class DonutController {
         alert.setContentText(msg);
         alert.showAndWait();
     }
-    @FXML
-    private void onBackToMenu() {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/main-menu.fxml"));
-            Stage stage = (Stage) donutTypeCombo.getScene().getWindow();
-            stage.setTitle("RU Donuts - Main Menu");
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    /**
+     * Handles navigation back to the main view (main-view.fxml) from the donut view.
+     * This version uses the event source to preserve the existing window size and styling.
+     *
+     * @param event the action event generated by clicking the back button
+     */
     @FXML
     private void onBackToMainMenu(javafx.event.ActionEvent event) {
         try {

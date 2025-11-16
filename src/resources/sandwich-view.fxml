@@ -11,10 +11,11 @@
         <ToggleGroup fx:id="proteinGroup" />
         <ToggleGroup fx:id="breadGroup" />
     </fx:define>
-    
-    <VBox spacing="12.0" alignment="CENTER" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
 
-        <Label text="Order Sandwich" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+    <VBox spacing="12.0" alignment="CENTER"
+          AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
+
+        <Label text="🥪Order Sandwich🥪" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
 
         <!-- Sandwich Image -->
         <ImageView fitHeight="200" fitWidth="200" preserveRatio="true">
@@ -23,27 +24,47 @@
             </image>
         </ImageView>
 
-        <VBox spacing="8">
-            <Label text="Protein:" style="-fx-font-weight: bold;" />
-            <RadioButton text="Beef" toggleGroup="$proteinGroup" selected="true" onAction="#onSelectionChanged" />
-            <RadioButton text="Chicken" toggleGroup="$proteinGroup" onAction="#onSelectionChanged" />
-            <RadioButton text="Salmon" toggleGroup="$proteinGroup" onAction="#onSelectionChanged" />
-        </VBox>
+        <HBox spacing="40" alignment="TOP_CENTER">
 
-        <VBox spacing="8">
-            <Label text="Bread:" style="-fx-font-weight: bold;" />
-            <RadioButton text="Bagel" toggleGroup="$breadGroup" selected="true" onAction="#onSelectionChanged" />
-            <RadioButton text="Wheat Bread" toggleGroup="$breadGroup" onAction="#onSelectionChanged" />
-            <RadioButton text="Sourdough" toggleGroup="$breadGroup" onAction="#onSelectionChanged" />
-        </VBox>
+            <!-- Protein Section -->
+            <VBox spacing="8" alignment="TOP_LEFT">
+                <Label text="Protein:" styleClass="section-title"/>
+                <Separator orientation="HORIZONTAL" />
+                <RadioButton text="Beef"    toggleGroup="$proteinGroup"/>
+                <RadioButton text="Chicken" toggleGroup="$proteinGroup"/>
+                <RadioButton text="Salmon"  toggleGroup="$proteinGroup"/>
+            </VBox>
 
-        <VBox spacing="4">
-            <Label text="Add-ons:" style="-fx-font-weight: bold;" />
-            <CheckBox fx:id="cheese" text="Cheese (+$1.00)" onAction="#onSelectionChanged" />
-            <CheckBox fx:id="lettuce" text="Lettuce (+$0.30)" onAction="#onSelectionChanged" />
-            <CheckBox fx:id="tomato" text="Tomatoes (+$0.30)" onAction="#onSelectionChanged" />
-            <CheckBox fx:id="onion" text="Onions (+$0.30)" onAction="#onSelectionChanged" />
-        </VBox>
+            <!-- Vertical Divider -->
+            <Separator orientation="VERTICAL" prefHeight="200" styleClass="divider"/>
+
+            <!-- Bread Section -->
+            <VBox spacing="8" alignment="TOP_LEFT">
+                <Label text="Bread:" styleClass="section-title"/>
+                <Separator orientation="HORIZONTAL"/>
+                <RadioButton text="Bagel"       toggleGroup="$breadGroup"/>
+                <RadioButton text="Wheat Bread" toggleGroup="$breadGroup"/>
+                <RadioButton text="Sourdough"   toggleGroup="$breadGroup"/>
+            </VBox>
+
+            <!-- Vertical Divider -->
+            <Separator orientation="VERTICAL" prefHeight="200" styleClass="divider"/>
+
+            <!-- Add-ons Section -->
+            <VBox spacing="8" alignment="TOP_LEFT">
+                <Label text="Add-ons:" styleClass="section-title"/>
+                <Separator orientation="HORIZONTAL"/>
+                <CheckBox fx:id="cheese"
+                          text="Cheese (+$1.00)"/>
+                <CheckBox fx:id="lettuce"
+                          text="Lettuce (+$0.30)"/>
+                <CheckBox fx:id="tomato"
+                          text="Tomatoes (+$0.30)"/>
+                <CheckBox fx:id="onion"
+                          text="Onions (+$0.30)"/>
+            </VBox>
+
+        </HBox>
 
         <HBox spacing="8" alignment="CENTER">
             <Label text="Quantity:" />
@@ -53,9 +74,16 @@
         <Label fx:id="priceLabel" text="Price: $0.00" style="-fx-font-size: 14px;" />
 
         <HBox spacing="10" alignment="CENTER">
-            <Button fx:id="addBtn" text="Add to Order" onAction="#onAddToOrder" />
-            <Button text="Clear" onAction="#onSelectionChanged" />
-            <Button text="Back to Main Menu" onAction="#onBackToMainMenu" />
+            <Button fx:id="addBtn"
+                    text="Add to Order"
+                    styleClass="ru-button"
+                    onAction="#onAddToOrder" />
+            <Button text="Clear"
+                    styleClass="ru-button"
+                    onAction="#onSelectionChanged" />
+            <Button text="Back to Main Menu"
+                    styleClass="ru-button"
+                    onAction="#onBackToMainMenu" />
         </HBox>
 
     </VBox>

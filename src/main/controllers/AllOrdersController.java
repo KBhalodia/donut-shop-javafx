@@ -6,7 +6,11 @@ import java.nio.file.*;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import main.Main;
-
+/**
+ * Controller for the store orders view.
+ * Displays all placed orders, allows cancellation of a selected order,
+ * shows order details, and supports exporting all orders to a text file.
+ */
 public class AllOrdersController {
 
     @FXML private ListView<String> ordersList;
@@ -14,7 +18,11 @@ public class AllOrdersController {
     @FXML private Button cancelBtn, exportBtn;
 
     private static final double NJ_TAX = 0.06625;
-
+    /**
+     * Initializes the store orders view by setting the window title,
+     * registering this controller with {@link Main}, and loading
+     * the current list of store orders.
+     */
     @FXML
     private void initialize() {
         // Set window title
@@ -29,7 +37,11 @@ public class AllOrdersController {
         Main.allOrdersController = this;
         reloadOrders();
     }
-
+    /**
+     * Handles selection changes in the orders list.
+     * When an order is selected, its details (subtotal, tax, total, and items)
+     * are displayed in the text area.
+     */
     @FXML
     private void onOrderSelected() {
         int index = ordersList.getSelectionModel().getSelectedIndex();
@@ -49,7 +61,10 @@ public class AllOrdersController {
             orderDetailArea.setText(sb.toString());
         }
     }
-
+    /**
+     * Cancels (removes) the selected order from the store orders list,
+     * then reloads the list and clears the detail area.
+     */
     @FXML
     private void onCancelOrder() {
         int index = ordersList.getSelectionModel().getSelectedIndex();
@@ -59,7 +74,10 @@ public class AllOrdersController {
             orderDetailArea.clear();
         }
     }
-
+    /**
+     * Exports all store orders to a text file named "StoreOrders.txt"
+     * in the working directory. Shows an alert indicating success or failure.
+     */
     @FXML
     private void onExport() {
         try {
@@ -71,8 +89,12 @@ public class AllOrdersController {
             showAlert("Export Failed", "Error writing to file: " + ex.getMessage());
         }
     }
+    /**
+     * Reloads the list of store orders from {@link Main#storeOrders}
+     * and updates the list view with order number and total for each order.
+     * This method is public so other controllers can trigger refreshes.
+     */
 
-    // ⬅️ make this PUBLIC so other controllers can call it
     public void reloadOrders() {
         ordersList.getItems().clear();
         for (var order : Main.storeOrders.getOrders()) {
@@ -82,7 +104,12 @@ public class AllOrdersController {
             );
         }
     }
-
+    /**
+     * Displays an informational alert with the given title and message.
+     *
+     * @param title title for the alert dialog
+     * @param msg   message body for the alert
+     */
     private void showAlert(String title, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -90,6 +117,12 @@ public class AllOrdersController {
         alert.setContentText(msg);
         alert.showAndWait();
     }
+    /**
+     * Handles navigation back to the main menu view (main-view.fxml).
+     * Preserves the current window size and reapplies the stylesheet.
+     *
+     * @param event the action event triggered by the Back button
+     */
     @FXML
     private void onBackToMainMenu(javafx.event.ActionEvent event) {
         try {
