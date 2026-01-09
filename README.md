@@ -7,7 +7,7 @@ This project was developed as the **final iteration of a multi-phase academic pr
 
 ---
 
-## ✨ Features
+## Features
 
 - 🍩 **Donut Ordering**
   - Yeast, cake, donut holes, and seasonal donuts
@@ -35,7 +35,7 @@ This project was developed as the **final iteration of a multi-phase academic pr
 
 ---
 
-## 🧠 Design & Architecture
+## Design & Architecture
 
 - **Language:** Java  
 - **GUI Framework:** JavaFX  
@@ -52,7 +52,7 @@ Key design principles used:
 
 ---
 
-## ▶️ Running the Project
+## Running the Project
 
 ### Requirements
 - Java 17+ (or compatible JDK)
